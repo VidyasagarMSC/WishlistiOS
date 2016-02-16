@@ -15,7 +15,7 @@
 */
 
 import UIKit
-import IBMMobileFirstPlatformFoundation
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         WLClient.sharedInstance().registerChallengeHandler(ParkStoreChallengeHandler())
         if let customServerUrl = NSUserDefaults.standardUserDefaults().objectForKey("MFPCustomServerURL"){
-            WLClient.sharedInstance().setServerUrl(NSURL(string: customServerUrl as! String))
+           // WLClient.sharedInstance().setServerUrl(NSURL(string: customServerUrl as! String))
         }
         return true
     }
@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Device Token \(deviceToken.description)")
         WLPush.sharedInstance().tokenFromClient = deviceToken.description
         WLPush.sharedInstance().onReadyToSubscribeListener = OnReadyToSubscribeDelegate()
-        WLClient.sharedInstance().wlConnectWithDelegate(ConnnectionDelegate())
+        WLClient.sharedInstance().wlConnectWithDelegate(ConnectionDelegate())
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    class ConnnectionDelegate : NSObject, WLDelegate{
+  /*  class ConnectionDelegate : NSObject, WLDelegate{
         
         func onFailure(response: WLFailResponse!) {
             print("Connection Failure \(response.responseText)")
@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         func onSuccess(response: WLResponse!) {
             print("Connection successfull \(response.responseText)" )
         }
-    }
+    }*/
     
     class OnReadyToSubscribeDelegate :NSObject, WLOnReadyToSubscribeListener{
         func OnReadyToSubscribe() {
