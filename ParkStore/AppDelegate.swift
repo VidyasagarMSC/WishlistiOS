@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         WLClient.sharedInstance().registerChallengeHandler(ParkStoreChallengeHandler())
         if let customServerUrl = NSUserDefaults.standardUserDefaults().objectForKey("MFPCustomServerURL"){
-           // WLClient.sharedInstance().setServerUrl(NSURL(string: customServerUrl as! String))
+            WLClient.sharedInstance().setServerUrl(NSURL(string: customServerUrl as! String))
         }
         return true
     }
@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Device Token \(deviceToken.description)")
         WLPush.sharedInstance().tokenFromClient = deviceToken.description
         WLPush.sharedInstance().onReadyToSubscribeListener = OnReadyToSubscribeDelegate()
-        WLClient.sharedInstance().wlConnectWithDelegate(ConnectionDelegate())
+        //WLClient.sharedInstance().wlConnectWithDelegate(ConnectionDelegate())
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
